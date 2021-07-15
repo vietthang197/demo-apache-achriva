@@ -11,7 +11,7 @@
 
     <groupId>com.thanglv</groupId>
     <artifactId>demo-apache-achriva</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>demo-apache-achriva</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -36,6 +36,15 @@
     </dependencies>
 
     <build>
+        <extensions>
+            <!-- begin - needed for deploying to repository using webdav -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-http</artifactId>
+                <version>2.5</version>
+            </extension>
+            <!-- end - needed for deploying to repository using webdav -->
+        </extensions>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -55,16 +64,14 @@
     <!-- omitted xml -->
     <distributionManagement>
         <repository>
-            <id>archiva.internal</id>
+            <id>repository-1</id>
             <name>Internal Release Repository</name>
-            <url>http://10.252.12.7:6060/archiva/repository/internal/</url>
+            <url>http://10.252.12.7:6060/repository/internal</url>
         </repository>
         <snapshotRepository>
-            <id>archiva.snapshots</id>
+            <id>repository-2</id>
             <name>Internal Snapshot Repository</name>
-            <url>http://10.252.12.7:6060/archiva/repository/snapshots/</url>
+            <url>http://10.252.12.7:6060/repository/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
-    <!-- omitted xml -->
-
 </project>
